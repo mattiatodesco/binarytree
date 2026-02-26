@@ -60,4 +60,37 @@ public class BinaryTree {
         postorder(n.getRight()); 
         System.out.print(n.getData()); 
     }
+
+    /** Conta quanti nodi sono presenti nel sotto-albero in input
+     * @param root Nodo iniziale del sotto-albero
+     * @return numero di nodi contati
+     */
+    public int nodeCounter(Node root){
+        if (root == null) return 0;
+
+        //chiamata ricorsiva
+        return (nodeCounter(root.getLeft()) + nodeCounter(root.getRight()) + 1);
+    }
+
+    public int leavesCounter(Node root){
+        if (root == null) return 0;
+        if (root.getLeft() == null && root.getRight() == null) return 1;
+
+        return (leavesCounter(root.getLeft()) + leavesCounter(root.getRight()));
+    }
+
+    public boolean searchNode(Node root, char letter){
+        if (root == null) return false;
+        
+        if (root.getData() == letter) return true;
+
+        return (searchNode(root.getLeft(), letter) || searchNode(root.getRight(), letter));
+    }
+
+    public int depth(Node root){
+        // "figli" di una foglia 
+        if (root == null) return -1;
+
+        return Math.max(depth(root.getLeft()), depth(root.getRight())) +1;
+    }
 }
