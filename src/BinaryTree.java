@@ -93,4 +93,33 @@ public class BinaryTree {
 
         return Math.max(depth(root.getLeft()), depth(root.getRight())) +1;
     }
+
+    public int calcolaLivello(Node n){
+        return LivelloRec(n, this.root);
+    }
+    
+    private int LivelloRec(Node n, Node cursor){
+        if (cursor == null) return 0;
+        if (cursor == n) return 1;
+
+        int dx = LivelloRec(n, cursor.getRight());
+        int sx = LivelloRec(n, cursor.getLeft());
+
+        if (dx > 0) return dx +1;
+        else if (sx > 0) return sx +1;
+        else return 0;
+    }
+
+    public String mostraPercorso(Node start, Node end){
+        
+    }
+
+    private String percorsoRec(Node start, Node end, Node cursor){
+        if (cursor == null) return "";
+        if (cursor == end) return end.getData();
+    }
+
+
+
+
 }

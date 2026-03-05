@@ -36,5 +36,9 @@ public class App {
         System.out.println("L è presente? " + tree.searchNode(a, 'L'));
         System.out.println("H è presente? " + tree.searchNode(a, 'H'));
         System.out.println("Profondità: " + tree.depth(a));
+
+        System.out.println("Livello di g: " + tree.calcolaLivello(g));
+        System.out.println("Livello di b: " + tree.calcolaLivello(b));
+        System.out.println("Livello di f: " + tree.calcolaLivello(f));
     }
 }
