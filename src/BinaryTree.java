@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinaryTree {
     
     private Node root;
@@ -110,13 +113,65 @@ public class BinaryTree {
         else return 0;
     }
 
-    public String mostraPercorso(Node start, Node end){
+    public Node getAncestor(Node n){
+        return getAncestor(root, n);
+    }
+
+    public Node getAncestor(Node current, Node n){
+        // uscita
+        if (current == null || n == null) return null;
+        if (n == current) return null;
+        
+        // caso base
+        if (current.getLeft() == n || current.getLeft() == n) return current;
+
+        // chiamata ricorsiva
+        Node left =  getAncestor(current.getLeft(), n);
+        if (left != null) return left;
+
+        Node right = getAncestor(current.getRight(), n);
+        return right;
+
+    }
+
+    public List<Node> getPathList(Node start, Node end){
+        if (start == null || end == null) return new ArrayList<Node>();
+
+        ArrayList<Node> list = new ArrayList<>();
+
+        boolean reverse = false;
+        int startLvl = calcolaLivello(start);
+        int endLvl = calcolaLivello(end);
+
+        if (startLvl == 0 || endLvl == 0) return  new ArrayList<Node>();
+        if (start != end && startLvl == endLvl) return  new ArrayList<Node>();
+
+        if (startLvl < endLvl)
+            getPathList(start, end, list);
+        else {
+            getPathList(end, start, list);
+            reverse = true;
+        }
+
+        return reverse ? list : list.reversed();
         
     }
 
-    private String percorsoRec(Node start, Node end, Node cursor){
-        if (cursor == null) return "";
-        if (cursor == end) return end.getData();
+    private void getPathList(Node start, Node end, List<Node> list){
+        if (start == end) {
+            list.add(start);
+            return;
+        }
+
+        if (end == root){
+            list.clear();
+            return;
+        } 
+
+        return getPathList(start, end);
+
+
+
     }
 
 

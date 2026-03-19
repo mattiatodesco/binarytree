@@ -40,5 +40,10 @@ public class App {
         System.out.println("Livello di g: " + tree.calcolaLivello(g));
         System.out.println("Livello di b: " + tree.calcolaLivello(b));
         System.out.println("Livello di f: " + tree.calcolaLivello(f));
+
+        System.out.println("Genitore di g: " + tree.getAncestor(g).getData());
+
+        System.out.println("discesa: " + tree.getPathList(a, f));
+        System.out.println("salita: " + tree.getPathList(f, a));
     }
 }
