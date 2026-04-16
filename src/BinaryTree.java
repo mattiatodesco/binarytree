@@ -168,13 +168,7 @@ public class BinaryTree {
             return;
         } 
 
-        return getPathList(start, end);
-
-
-
+        getPathList(start, end);
     }
-
-
-
 
 }
